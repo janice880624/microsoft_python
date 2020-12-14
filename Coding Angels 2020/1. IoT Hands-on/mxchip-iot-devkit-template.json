@@ -1,0 +1,320 @@
+{
+  "@id": "urn:mxchip:mxchip_iot_devkit:1",
+  "@type": "CapabilityModel",
+  "contents": [],
+  "displayName": {
+    "en": "MXChip IoT DevKit"
+  },
+  "implements": [
+    {
+      "@type": "InterfaceInstance",
+      "name": "deviceinfo",
+      "schema": {
+        "@id": "urn:azureiot:DeviceManagement:DeviceInformation:1",
+        "@type": "Interface",
+        "contents": [
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Company name of the device manufacturer. This could be the same as the name of the original equipment manufacturer (OEM). Ex. Contoso."
+            },
+            "displayName": {
+              "en": "Manufacturer"
+            },
+            "name": "manufacturer",
+            "schema": "string"
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Device model name or ID. Ex. Surface Book 2."
+            },
+            "displayName": {
+              "en": "Device model"
+            },
+            "name": "model",
+            "schema": "string"
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Version of the software on your device. This could be the version of your firmware. Ex. 1.3.45"
+            },
+            "displayName": {
+              "en": "Software version"
+            },
+            "name": "swVersion",
+            "schema": "string"
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Name of the operating system on the device. Ex. Windows 10 IoT Core."
+            },
+            "displayName": {
+              "en": "Operating system name"
+            },
+            "name": "osName",
+            "schema": "string"
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Architecture of the processor on the device. Ex. x64 or ARM."
+            },
+            "displayName": {
+              "en": "Processor architecture"
+            },
+            "name": "processorArchitecture",
+            "schema": "string"
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Name of the manufacturer of the processor on the device. Ex. Intel."
+            },
+            "displayName": {
+              "en": "Processor manufacturer"
+            },
+            "name": "processorManufacturer",
+            "schema": "string"
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Total available storage on the device in kilobytes. Ex. 2048000 kilobytes."
+            },
+            "displayName": {
+              "en": "Total storage"
+            },
+            "name": "totalStorage",
+            "schema": "long",
+            "displayUnit": {
+              "en": "kilobytes"
+            }
+          },
+          {
+            "@type": "Property",
+            "description": {
+              "en": "Total available memory on the device in kilobytes. Ex. 256000 kilobytes."
+            },
+            "displayName": {
+              "en": "Total memory"
+            },
+            "name": "totalMemory",
+            "schema": "long",
+            "displayUnit": {
+              "en": "kilobytes"
+            }
+          }
+        ],
+        "displayName": {
+          "en": "Device Information"
+        }
+      }
+    },
+    {
+      "@type": "InterfaceInstance",
+      "name": "leds",
+      "schema": {
+        "@id": "urn:mxchip:built_in_leds:1",
+        "@type": "Interface",
+        "contents": [
+          {
+            "@type": "Command",
+            "commandType": "synchronous",
+            "description": {
+              "en": "This command will begin blinking the built-in RGBLED for given time interval."
+            },
+            "name": "blink",
+            "request": {
+              "@type": "SchemaField",
+              "name": "interval",
+              "schema": "long"
+            },
+            "response": {
+              "@type": "SchemaField",
+              "name": "blinkResponse",
+              "schema": {
+                "@id": "urn:mxchip:built_in_leds:blink:blinkResponse:vlvgo4ssoqk:1",
+                "@type": "Object",
+                "fields": [
+                  {
+                    "name": "description",
+                    "schema": "string"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "@type": "Command",
+            "commandType": "synchronous",
+            "comment": "This Commands will turn-on the built-in LED light on the device.",
+            "name": "turnOnLed"
+          },
+          {
+            "@type": "Command",
+            "commandType": "synchronous",
+            "comment": "This Commands will turn-off the built-in LED light on the device.",
+            "name": "turnOffLed"
+          }
+        ],
+        "displayName": {
+          "en": "mxchip_leds"
+        }
+      }
+    },
+    {
+      "@type": "InterfaceInstance",
+      "name": "screen",
+      "schema": {
+        "@id": "urn:mxchip:screen:1",
+        "@type": "Interface",
+        "contents": [
+          {
+            "@type": "Command",
+            "commandType": "synchronous",
+            "description": {
+              "en": "This command will echo the text string from cloud and show it on the onboard OLED screen."
+            },
+            "displayName": {
+              "en": "Echo"
+            },
+            "name": "echo",
+            "request": {
+              "@type": "SchemaField",
+              "name": "text",
+              "schema": "string"
+            },
+            "response": {
+              "@type": "SchemaField",
+              "name": "echoResponse",
+              "schema": {
+                "@id": "urn:mxchip:screen:echo:echoResponse:v861u_fum5k:1",
+                "@type": "Object",
+                "fields": [
+                  {
+                    "name": "echo",
+                    "schema": "string"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "@type": "Command",
+            "commandType": "synchronous",
+            "description": {
+              "en": "This command will show countdown number in the onboard OLED screen, and reboot the device once it's 0."
+            },
+            "displayName": {
+              "en": "Countdown"
+            },
+            "name": "countdown",
+            "request": {
+              "@type": "SchemaField",
+              "name": "number",
+              "schema": "integer"
+            }
+          }
+        ],
+        "displayName": {
+          "en": "mxchip_screen"
+        }
+      }
+    },
+    {
+      "@type": "InterfaceInstance",
+      "name": "settings",
+      "schema": {
+        "@id": "urn:mxchip:settings:1",
+        "@type": "Interface",
+        "contents": [
+          {
+            "@type": "Property",
+            "displayName": {
+              "en": "Fan Speed"
+            },
+            "name": "fanSpeed",
+            "schema": "double",
+            "writable": true
+          },
+          {
+            "@type": "Property",
+            "displayName": {
+              "en": "Voltage"
+            },
+            "name": "voltage",
+            "schema": "double",
+            "writable": true
+          },
+          {
+            "@type": "Property",
+            "displayName": {
+              "en": "Current"
+            },
+            "name": "current",
+            "schema": "double",
+            "writable": true
+          },
+          {
+            "@type": "Property",
+            "displayName": {
+              "en": "IR"
+            },
+            "name": "irSwitch",
+            "schema": "boolean",
+            "writable": true
+          }
+        ],
+        "displayName": {
+          "en": "mxchip_settings"
+        }
+      }
+    },
+    {
+      "@type": "InterfaceInstance",
+      "name": "sensors",
+      "schema": {
+        "@id": "urn:mxchip:built_in_sensors:1",
+        "@type": "Interface",
+        "contents": [
+          {
+            "@type": "Telemetry",
+            "comment": "The humidity measurement data from the built-in HTS221 sensor.",
+            "displayName": {
+              "en": "Humidity"
+            },
+            "name": "humidity",
+            "schema": "double"
+          },
+          {
+            "@type": "Telemetry",
+            "comment": "The temperature measurement data from the built-in HTS221 sensor.",
+            "displayName": {
+              "en": "Temperature"
+            },
+            "name": "temperature",
+            "schema": "double"
+          },
+          {
+            "@type": "Telemetry",
+            "comment": "The pressure measurement data from the built-in LPS22HB sensor.",
+            "displayName": {
+              "en": "Pressure"
+            },
+            "name": "pressure",
+            "schema": "double"
+          }
+        ],
+        "displayName": {
+          "en": "mxchip_sensor"
+        }
+      }
+    }
+  ],
+  "@context": [
+    "http://azureiot.com/v1/contexts/IoTModel.json"
+  ]
+}
